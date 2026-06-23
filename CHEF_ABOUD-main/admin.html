@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Chef Abood Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔑</text></svg>">
+  <style>
+    /* ===== ADMIN CUSTOM CSS USING ROOT STYLE VARIABLES ===== */
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 30px;
+      width: 95%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .admin-title {
+      font-family: var(--font-heading);
+      color: var(--gold-primary);
+      font-size: 2.2rem;
+      margin: 0;
+    }
+
+    .admin-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-top: 5px;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 15px;
+    }
+
+    /* Tabs Styling */
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--glass-border);
+      margin-bottom: 30px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 25px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: var(--transition-fast);
+      letter-spacing: 1px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .tab-btn.active {
+      color: var(--gold-primary);
+      border-bottom-color: var(--gold-primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease both;
+    }
+
+    /* Grid Layouts */
+    .manager-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .manager-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Form Card Styling */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .form-title {
+      font-family: var(--font-heading);
+      color: var(--gold-light);
+      font-size: 1.4rem;
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition-fast);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-glow);
+    }
+
+    .image-preview {
+      width: 100%;
+      height: 120px;
+      border: 1px dashed var(--glass-border);
+      border-radius: 8px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg-primary);
+    }
+
+    .image-preview img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: cover;
+    }
+
+    /* List & Cards Column */
+    .list-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 25px;
+    }
+
+    .category-group {
+      margin-bottom: 30px;
+    }
+
+    .category-title {
+      font-family: var(--font-heading);
+      color: var(--gold-primary);
+      font-size: 1.3rem;
+      border-bottom: 1px solid var(--glass-border);
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      border-radius: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      margin-bottom: 10px;
+      transition: var(--transition-fast);
+    }
+
+    .list-item:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+    }
+
+    .item-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .item-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--glass-border);
+      background: var(--bg-primary);
+    }
+
+    .item-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .item-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      max-width: 350px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item-price {
+      font-weight: 700;
+      color: var(--gold-light);
+      font-size: 0.95rem;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-action {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .btn-action.edit:hover {
+      background: rgba(200, 169, 126, 0.15);
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    .btn-action.delete:hover {
+      background: rgba(255, 77, 77, 0.15);
+      border-color: #ff4d4d;
+      color: #ff4d4d;
+    }
+
+    /* Gallery Grid in Admin */
+    .admin-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .gallery-card:hover {
+      border-color: var(--glass-border-hover);
+      transform: translateY(-5px);
+    }
+
+    .gallery-card-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: var(--bg-primary);
+    }
+
+    .gallery-card-body {
+      padding: 12px;
+      text-align: center;
+    }
+
+    .gallery-card-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 8px;
+    }
+
+    .gallery-delete-overlay {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ff4d4d;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: var(--transition-fast);
+    }
+
+    .gallery-delete-overlay:hover {
+      background: #ff4d4d;
+      color: #0a0a0a;
+      transform: scale(1.1);
+    }
+
+    /* Login Overlay & Banner */
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.95);
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: var(--transition-smooth);
+    }
+
+    .login-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--glass-border);
+      padding: 40px;
+      border-radius: var(--border-radius);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .login-logo {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .login-title {
+      font-family: var(--font-heading);
+      color: var(--gold-primary);
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      color: var(--text-primary);
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      transition: var(--transition-fast);
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 15px var(--gold-glow);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+      border: none;
+      color: #0a0a0a;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: var(--transition-smooth);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(200, 169, 126, 0.4);
+    }
+
+    .login-error {
+      color: #ff4d4d;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .banner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+      color: #0a0a0a;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(150%);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 999999;
+    }
+
+    .banner.show {
+      transform: translateY(0);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== LOGIN OVERLAY ===== -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-logo">👨‍🍳</div>
+      <h2 class="login-title">Chef Abood Admin</h2>
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <input type="password" id="passwordField" class="login-input" placeholder="Enter Password" required autofocus>
+        <button type="submit" class="login-btn">Log In</button>
+      </form>
+      <div class="login-error" id="loginError">Incorrect Password. Please try again.</div>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN DASHBOARD CONTAINER ===== -->
+  <div class="admin-container">
+    <div class="admin-header">
+      <div>
+        <h1 class="admin-title">Chef Abood Admin Panel</h1>
+        <div class="admin-subtitle">Add, edit, delete menu items and gallery images</div>
+      </div>
+      <div class="admin-actions">
+        <button onclick="resetDefaults()" class="btn btn-outline" style="padding: 12px 25px; font-size: 0.8rem; cursor: pointer; border-color: #ff4d4d; color: #ff4d4d;">⚠️ Reset to Defaults</button>
+        <a href="index.html" class="btn btn-primary" style="padding: 12px 25px; font-size: 0.8rem; text-decoration: none;">👁️ View Site</a>
+      </div>
+    </div>
+
+    <!-- Tabs Menu -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab(event, 'menuTab')">🍽️ Menu Manager</button>
+      <button class="tab-btn" onclick="switchTab(event, 'galleryTab')">📸 Gallery Manager</button>
+    </div>
+
+    <!-- ================= TAB: MENU MANAGER ================= -->
+    <div id="menuTab" class="tab-content active">
+      <div class="manager-grid">
+        <!-- Form to Add/Edit Meal -->
+        <div class="form-card">
+          <h2 class="form-title" id="menuFormTitle">➕ Add Menu Item</h2>
+          <form id="menuForm" onsubmit="saveMeal(event)">
+            <input type="hidden" id="mealIdField">
+            
+            <div class="form-group">
+              <label for="mealNameField">Dish Name</label>
+              <input type="text" id="mealNameField" class="form-control" placeholder="e.g. Special Grilled Chicken" required>
+            </div>
+
+            <div class="form-group">
+              <label for="mealPriceField">Price (IQD)</label>
+              <input type="number" id="mealPriceField" class="form-control" placeholder="e.g. 15000" required>
+            </div>
+
+            <div class="form-group">
+              <label for="mealCategoryField">Category</label>
+              <select id="mealCategoryField" class="form-control" onchange="toggleCategorySpecificFields()" required>
+                <option value="chef">Chef Specials</option>
+                <option value="meals" selected>Meals</option>
+                <option value="wraps">Rolls & Wraps</option>
+                <option value="burgers">Burgers</option>
+                <option value="pasta">Pasta & Rizzo</option>
+                <option value="wings">Wings & Tenders</option>
+                <option value="fingers">Fingers</option>
+                <option value="extras">Extras & Sauces</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mealDescField">Description</label>
+              <textarea id="mealDescField" class="form-control" rows="3" placeholder="Dish description..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="mealBadgeField">Badge / Tag (Optional)</label>
+              <input type="text" id="mealBadgeField" class="form-control" placeholder="e.g. VIP, Exclusive, Best Seller">
+            </div>
+
+            <!-- Image field (required for Chef Specials, optional for others) -->
+            <div class="form-group" id="mealImageGroup">
+              <label for="mealImageFile">Dish Image (File or URL)</label>
+              <input type="file" id="mealImageFile" class="form-control" accept="image/*" onchange="handleMealImageUpload(event)" style="margin-bottom: 8px;">
+              <input type="text" id="mealImageUrlField" class="form-control" placeholder="Or enter Image URL (e.g. images/chicken.png)">
+              <div class="image-preview" id="mealImagePreview">
+                <span style="color: var(--text-muted); font-size: 0.85rem;">No Image Selected</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+              <button type="submit" class="login-btn" style="flex: 1;">Save Dish</button>
+              <button type="button" id="cancelEditBtn" class="login-btn" onclick="clearMenuForm()" style="flex: 1; background: transparent; border: 1px solid var(--glass-border); color: var(--text-secondary); display: none;">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Meals List -->
+        <div class="list-card">
+          <h2 class="form-title">📋 Current Menu</h2>
+          <div id="mealsListContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: GALLERY MANAGER ================= -->
+    <div id="galleryTab" class="tab-content">
+      <div class="manager-grid">
+        <!-- Form to Add Gallery Image -->
+        <div class="form-card">
+          <h2 class="form-title">➕ Add Gallery Image</h2>
+          <form id="galleryForm" onsubmit="saveGalleryImage(event)">
+            
+            <div class="form-group">
+              <label for="galleryTitleField">Image Title</label>
+              <input type="text" id="galleryTitleField" class="form-control" placeholder="e.g. Grilled Ribeye Steak" required>
+            </div>
+
+            <div class="form-group">
+              <label for="galleryFileField">Image File (or enter URL)</label>
+              <input type="file" id="galleryFileField" class="form-control" accept="image/*" onchange="handleGalleryImageUpload(event)" style="margin-bottom: 8px;">
+              <input type="text" id="galleryUrlField" class="form-control" placeholder="Or enter Image URL (e.g. images/steak.png)">
+              <div class="image-preview" id="galleryImagePreview">
+                <span style="color: var(--text-muted); font-size: 0.85rem;">No Image Selected</span>
+              </div>
+            </div>
+
+            <button type="submit" class="login-btn" style="width: 100%; margin-top: 25px;">Add to Gallery</button>
+          </form>
+        </div>
+
+        <!-- Gallery Grid List -->
+        <div class="list-card">
+          <h2 class="form-title">📸 Active Gallery Images</h2>
+          <div class="admin-gallery-grid" id="adminGalleryGrid"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Notification Banner -->
+  <div class="banner" id="banner">Saved successfully!</div>
+
+  <script>
+    // Configuration fallback default data
+    const defaultMeals = [
+      { id: "chef-chicken-tagine", name: "Chef Abood Chicken Tagine", price: 16000, category: "chef", desc: "Special chicken tagine prepared with Chef Abood's signature recipe, secret spices, and aromatic herbs", image: "images/chicken.png", tag: "⭐ Chef Special", meta: ["⭐ Most Popular", "👨‍🍳 Special Recipe"] },
+      { id: "chef-beef-tagine", name: "Chef Abood Beef Tagine", price: 18000, category: "chef", desc: "Premium beef tagine slow-cooked with Chef Abood's special marinade, fresh vegetables, and signature sauce", image: "images/steak.png", tag: "🔥 Best Seller", meta: ["🔥 Featured", "👨‍🍳 Special Recipe"] },
+      { id: "crispy-meal", name: "Crispy Meal", price: 15000, category: "meals", desc: "Crispy golden chicken served with fries and a drink" },
+      { id: "scallop-meal", name: "Scallop Meal", price: 15000, category: "meals", desc: "Tender chicken scallop served with fries and a drink" },
+      { id: "zinger-cheese-meal", name: "Zinger & Cheese Meal", price: 15000, category: "meals", desc: "Chicken zinger with melted cheese, served with fries and a drink" },
+      { id: "crispy-roll", name: "Crispy Roll", price: 8000, category: "wraps", desc: "Crispy chicken roll with fresh lettuce and special sauce" },
+      { id: "classic-crispy-roll", name: "Classic Crispy Roll", price: 6500, category: "wraps", desc: "Crispy chicken roll made with our classic recipe" },
+      { id: "chicken-fajita-wrap", name: "Chicken Fajita Wrap", price: 7000, category: "wraps", desc: "Grilled chicken fajita wrap with mixed veggies and spices" },
+      { id: "meat-fajita-wrap", name: "Meat Fajita Wrap", price: 8000, category: "wraps", desc: "Savory beef fajita wrap with mixed veggies and signature spices" },
+      { id: "classic-beef-burger", name: "Classic Beef Burger", price: 8000, category: "burgers", desc: "Classic grilled beef patty with fresh lettuce and tomatoes" },
+      { id: "vip-beef-burger", name: "VIP Beef Burger", price: 12000, category: "burgers", desc: "Premium beef burger served VIP style with double cheese and special house sauces", badge: "VIP" },
+      { id: "crispy-chicken-burger", name: "Crispy Chicken Burger", price: 7000, category: "burgers", desc: "Crispy golden chicken breast with special burger sauce and lettuce" },
+      { id: "penne-pasta", name: "Penne Pasta", price: 8000, category: "pasta", desc: "Penne pasta tossed in rich white cream sauce with grilled chicken" },
+      { id: "veg-cream-rigatoni", name: "Vegetable Cream Rigatoni", price: 8000, category: "pasta", desc: "Rigatoni pasta with fresh garden vegetables in a white cream sauce" },
+      { id: "spaghetti-bolognese", name: "Spaghetti Bolognese", price: 8000, category: "pasta", desc: "Traditional spaghetti served with rich Italian meat sauce" },
+      { id: "classic-rizzo", name: "Classic Rizzo", price: 7000, category: "pasta", desc: "Classic creamy Rizzo rice dish with savory toppings" },
+      { id: "rizzo-cheese", name: "Rizzo with Cheese", price: 8000, category: "pasta", desc: "Creamy Rizzo rice topped with lots of melted cheese" },
+      { id: "honey-mustard-wings", name: "Honey Mustard Wings", price: 6000, category: "wings", desc: "7 pieces of crispy wings tossed in sweet honey mustard sauce" },
+      { id: "bbq-wings", name: "BBQ Wings", price: 7000, category: "wings", desc: "7 pieces of crispy wings tossed in smoky BBQ sauce" },
+      { id: "honey-mustard-tenders", name: "Honey Mustard Chicken Tenders", price: 8000, category: "wings", desc: "Dynamic chicken breast tenders served with honey mustard dipping sauce" },
+      { id: "bbq-tenders", name: "BBQ Chicken Tenders", price: 8000, category: "wings", desc: "Crispy chicken breast tenders served with smoky BBQ dipping sauce" },
+      { id: "fingers-mozzarella", name: "Fingers & Mozzarella Cheese", price: 5000, category: "fingers", desc: "Crispy chicken fingers covered with melted mozzarella cheese" },
+      { id: "fingers-meal", name: "Fingers Meal", price: 4000, category: "fingers", desc: "Crispy chicken fingers served with fries and a refreshing drink" },
+      { id: "spicy-fingers-meal", name: "Spicy Fingers Meal", price: 5000, category: "fingers", desc: "Spicy chicken fingers served with fries and a drink" },
+      { id: "special-herb-sauce", name: "Chef Abood Special Herb Sauce", price: 1000, category: "extras", desc: "Exclusive signature dipping sauce made by Chef Abood", badge: "Exclusive" },
+      { id: "special-bbq-sauce", name: "Special BBQ Sauce", price: 1000, category: "extras", desc: "Special BBQ sauce" },
+      { id: "coleslaw", name: "Coleslaw", price: 1000, category: "extras", desc: "Coleslaw salad" }
+    ];
+
+    const defaultGallery = [
+      { image: "images/steak.png", title: "Ribeye Steak" },
+      { image: "images/salmon.png", title: "Grilled Salmon" },
+      { image: "images/pasta.png", title: "Truffle Pasta" },
+      { image: "images/dessert.png", title: "Lava Cake" },
+      { image: "images/lamb.png", title: "Lamb Chops" },
+      { image: "images/burger.png", title: "Wagyu Burger" }
+    ];
+
+    const categories = {
+      chef: "Chef Specials",
+      meals: "Meals",
+      wraps: "Rolls & Wraps",
+      burgers: "Burgers",
+      pasta: "Pasta & Rizzo",
+      wings: "Wings & Tenders",
+      fingers: "Fingers",
+      extras: "Extras & Sauces"
+    };
+
+    // States
+    let mealsList = [];
+    let galleryList = [];
+    let mealImageBase64 = "";
+    let galleryImageBase64 = "";
+
+    // Password Login Protection
+    function handleLogin(e) {
+      e.preventDefault();
+      const pw = document.getElementById('passwordField').value;
+      if (pw === 'admin123') {
+        document.getElementById('loginOverlay').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('loginOverlay').style.display = 'none';
+        }, 500);
+        sessionStorage.setItem('chef_abood_auth', 'true');
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        document.getElementById('passwordField').value = '';
+      }
+    }
+
+    // Auto-login checking and loader
+    window.addEventListener('load', () => {
+      if (sessionStorage.getItem('chef_abood_auth') === 'true') {
+        document.getElementById('loginOverlay').style.display = 'none';
+      }
+      loadData();
+      renderMealsList();
+      renderGalleryList();
+    });
+
+    // Switch Tabs
+    function switchTab(e, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      e.currentTarget.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // Load Data Helper
+    function loadData() {
+      const storedMeals = localStorage.getItem('chef_abood_meals');
+      mealsList = storedMeals ? JSON.parse(storedMeals) : [...defaultMeals];
+
+      const storedGallery = localStorage.getItem('chef_abood_gallery');
+      galleryList = storedGallery ? JSON.parse(storedGallery) : [...defaultGallery];
+    }
+
+    // Save Data Helper
+    function saveData() {
+      localStorage.setItem('chef_abood_meals', JSON.stringify(mealsList));
+      localStorage.setItem('chef_abood_gallery', JSON.stringify(galleryList));
+    }
+
+    // Render current meals list (categorized)
+    function renderMealsList() {
+      const container = document.getElementById('mealsListContainer');
+      container.innerHTML = '';
+
+      Object.keys(categories).forEach(catKey => {
+        const catMeals = mealsList.filter(m => m.category === catKey);
+        if (catMeals.length === 0) return;
+
+        const group = document.createElement('div');
+        group.className = 'category-group';
+        group.innerHTML = `<div class="category-title">${categories[catKey]}</div>`;
+
+        catMeals.forEach(meal => {
+          const row = document.createElement('div');
+          row.className = 'list-item';
+
+          const imgHtml = meal.image ? `<img src="${meal.image}" class="item-img" alt="${meal.name}">` : `<div class="item-img" style="display:flex;align-items:center;justify-content:center;background:var(--bg-primary);font-size:1.5rem;">🍽️</div>`;
+          row.innerHTML = `
+            <div class="item-meta">
+              ${imgHtml}
+              <div class="item-details">
+                <span class="item-name">${meal.name}</span>
+                <span class="item-desc">${meal.desc || 'No description provided'}</span>
+              </div>
+            </div>
+            <div class="item-meta">
+              <span class="item-price">${Number(meal.price).toLocaleString()} IQD</span>
+              <div class="item-actions">
+                <button type="button" class="btn-action edit" onclick="editMeal('${meal.id}')" title="Edit">✏️</button>
+                <button type="button" class="btn-action delete" onclick="deleteMeal('${meal.id}')" title="Delete">🗑️</button>
+              </div>
+            </div>
+          `;
+          group.appendChild(row);
+        });
+
+        container.appendChild(group);
+      });
+    }
+
+    // Save/Add Meal Action
+    function saveMeal(e) {
+      e.preventDefault();
+      
+      const id = document.getElementById('mealIdField').value;
+      const name = document.getElementById('mealNameField').value;
+      const price = parseInt(document.getElementById('mealPriceField').value) || 0;
+      const category = document.getElementById('mealCategoryField').value;
+      const desc = document.getElementById('mealDescField').value;
+      const badge = document.getElementById('mealBadgeField').value;
+      
+      let image = document.getElementById('mealImageUrlField').value;
+      if (mealImageBase64) {
+        image = mealImageBase64;
+      }
+
+      if (id) {
+        // Edit mode
+        const index = mealsList.findIndex(m => m.id === id);
+        if (index > -1) {
+          mealsList[index] = { 
+            ...mealsList[index], 
+            name, 
+            price, 
+            category, 
+            desc, 
+            badge: badge || undefined,
+            tag: (category === 'chef' && badge) ? badge : undefined,
+            image: image || mealsList[index].image
+          };
+          showBanner("✅ Dish updated successfully!");
+        }
+      } else {
+        // Add Mode
+        const newId = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Date.now().toString().slice(-4);
+        const newMeal = {
+          id: newId,
+          name,
+          price,
+          category,
+          desc,
+          badge: badge || undefined,
+          tag: (category === 'chef' && badge) ? badge : undefined,
+          image: image || undefined
+        };
+        mealsList.push(newMeal);
+        showBanner("✅ New dish added successfully!");
+      }
+
+      saveData();
+      clearMenuForm();
+      renderMealsList();
+    }
+
+    // Edit Meal Loader
+    function editMeal(id) {
+      const meal = mealsList.find(m => m.id === id);
+      if (!meal) return;
+
+      document.getElementById('mealIdField').value = meal.id;
+      document.getElementById('mealNameField').value = meal.name;
+      document.getElementById('mealPriceField').value = meal.price;
+      document.getElementById('mealCategoryField').value = meal.category;
+      document.getElementById('mealDescField').value = meal.desc || '';
+      document.getElementById('mealBadgeField').value = meal.badge || meal.tag || '';
+      
+      if (meal.image && !meal.image.startsWith('data:')) {
+        document.getElementById('mealImageUrlField').value = meal.image;
+      } else {
+        document.getElementById('mealImageUrlField').value = '';
+      }
+
+      mealImageBase64 = meal.image && meal.image.startsWith('data:') ? meal.image : "";
+      
+      const preview = document.getElementById('mealImagePreview');
+      if (meal.image) {
+        preview.innerHTML = `<img src="${meal.image}">`;
+      } else {
+        preview.innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem;">No Image Selected</span>`;
+      }
+
+      document.getElementById('menuFormTitle').textContent = "✏️ Edit Menu Item";
+      document.getElementById('cancelEditBtn').style.display = 'block';
+    }
+
+    // Clear Menu Form
+    function clearMenuForm() {
+      document.getElementById('mealIdField').value = '';
+      document.getElementById('menuForm').reset();
+      document.getElementById('mealImagePreview').innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem;">No Image Selected</span>`;
+      mealImageBase64 = "";
+      
+      document.getElementById('menuFormTitle').textContent = "➕ Add Menu Item";
+      document.getElementById('cancelEditBtn').style.display = 'none';
+    }
+
+    // Delete Meal Action
+    function deleteMeal(id) {
+      if (confirm("Are you sure you want to delete this dish from the menu?")) {
+        mealsList = mealsList.filter(m => m.id !== id);
+        saveData();
+        renderMealsList();
+        showBanner("🗑️ Dish removed!");
+      }
+    }
+
+    // Handle Local Image Upload conversion to Base64 (Menu Form)
+    function handleMealImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      // Limit check (warn for files > 1MB since localStorage is 5MB)
+      if (file.size > 1024 * 1024) {
+        alert("⚠️ WARNING: Image size is greater than 1MB. High resolution uploads can easily fill local storage limits (5MB). Please compress your image first.");
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        mealImageBase64 = event.target.result;
+        document.getElementById('mealImagePreview').innerHTML = `<img src="${mealImageBase64}">`;
+        document.getElementById('mealImageUrlField').value = ''; // clear url input if file uploaded
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ================= GALLERY MANAGEMENT FUNCTIONS =================
+
+    // Render gallery images list
+    function renderGalleryList() {
+      const container = document.getElementById('adminGalleryGrid');
+      container.innerHTML = '';
+
+      galleryList.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+        card.innerHTML = `
+          <img src="${item.image}" class="gallery-card-img" alt="${item.title}">
+          <div class="gallery-card-body">
+            <div class="gallery-card-title">${item.title}</div>
+          </div>
+          <button type="button" class="gallery-delete-overlay" onclick="deleteGalleryImage(${index})" title="Delete Image">🗑️</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Save Gallery Image Action
+    function saveGalleryImage(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById('galleryTitleField').value;
+      let image = document.getElementById('galleryUrlField').value;
+
+      if (galleryImageBase64) {
+        image = galleryImageBase64;
+      }
+
+      if (!image) {
+        alert("Please select a file or enter an image URL.");
+        return;
+      }
+
+      galleryList.push({ title, image });
+      saveData();
+      
+      document.getElementById('galleryForm').reset();
+      document.getElementById('galleryImagePreview').innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem;">No Image Selected</span>`;
+      galleryImageBase64 = "";
+
+      renderGalleryList();
+      showBanner("✅ Image added to gallery!");
+    }
+
+    // Delete Gallery Image Action
+    function deleteGalleryImage(index) {
+      if (confirm("Are you sure you want to remove this image from the gallery?")) {
+        galleryList.splice(index, 1);
+        saveData();
+        renderGalleryList();
+        showBanner("🗑️ Gallery image removed!");
+      }
+    }
+
+    // Handle Local Image Upload conversion to Base64 (Gallery Form)
+    function handleGalleryImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      if (file.size > 1024 * 1024) {
+        alert("⚠️ WARNING: Image size is greater than 1MB. High resolution uploads can easily fill local storage limits (5MB). Please compress your image first.");
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        galleryImageBase64 = event.target.result;
+        document.getElementById('galleryImagePreview').innerHTML = `<img src="${galleryImageBase64}">`;
+        document.getElementById('galleryUrlField').value = '';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Reset Defaults
+    function resetDefaults() {
+      if (confirm("Are you sure you want to restore all defaults? All custom dishes, prices, and gallery images will be deleted.")) {
+        localStorage.removeItem('chef_abood_meals');
+        localStorage.removeItem('chef_abood_gallery');
+        loadData();
+        renderMealsList();
+        renderGalleryList();
+        showBanner("🔄 All settings restored to original defaults!");
+      }
+    }
+
+    // Toggle Category Specific Fields (e.g. chef specials tag layout)
+    function toggleCategorySpecificFields() {
+      const category = document.getElementById('mealCategoryField').value;
+      const badgeLabel = document.querySelector('label[for="mealBadgeField"]');
+      if (category === 'chef') {
+        badgeLabel.textContent = "Chef Tag / Special Label";
+        document.getElementById('mealBadgeField').placeholder = "e.g. ⭐ Chef Special, 🔥 Best Seller";
+      } else {
+        badgeLabel.textContent = "Badge / Tag (Optional)";
+        document.getElementById('mealBadgeField').placeholder = "e.g. VIP, Exclusive";
+      }
+    }
+
+    // Show Notification Banner Helper
+    function showBanner(message) {
+      const banner = document.getElementById('banner');
+      banner.textContent = message;
+      banner.classList.add('show');
+      setTimeout(() => {
+        banner.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

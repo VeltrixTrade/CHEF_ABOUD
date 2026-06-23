@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef Abod — عالم الطبخ الإبداعي</title>
+  <meta name="description" content="Chef Abod - شيف محترف يقدم أشهى الأطباق العالمية بلمسة إبداعية فريدة. اكتشف المنيو الخاص والأطباق المميزة.">
+  <meta name="keywords" content="chef abod, شيف عبود, طبخ, أطباق, مطعم, طعام فاخر">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍🍳</text></svg>">
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-logo">CHEF ABOD</div>
+    <div class="preloader-subtitle">GOLDEN BREAK</div>
+    <div class="preloader-address">Duhok-Mitran ST.</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- ===== CUSTOM CURSOR ===== -->
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- ===== BACKGROUND PARTICLES ===== -->
+  <div class="particles-container" id="particles"></div>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <img src="" alt="Gallery image" id="lightbox-img">
+  </div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-icon">👨‍🍳</div>
+        <span class="nav-logo-text">CHEF ABOD</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="active">الرئيسية</a></li>
+        <li><a href="#about">من أنا</a></li>
+        <li><a href="#menu">المنيو</a></li>
+        <li><a href="#signature">الأطباق المميزة</a></li>
+        <li><a href="#gallery">المعرض</a></li>
+        <li><a href="#contact" class="nav-cta">تواصل معي</a></li>
+      </ul>
+
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+
+    <div class="hero-bg-image">
+      <img src="images/hero-bg.png" alt="Kitchen atmosphere">
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="floating-elements">
+      <span class="float-item">🍳</span>
+      <span class="float-item">🔥</span>
+      <span class="float-item">🌿</span>
+      <span class="float-item">⭐</span>
+      <span class="float-item">🍽️</span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>Welcome to my kitchen</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line1">CHEF</span>
+        <span class="line2">ABOD</span>
+      </h1>
+
+      <p class="hero-subtitle">GOLDEN BREAK</p>
+      <p class="hero-address">Duhok-Mitran ST.</p>
+
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-primary">
+          🍽️ تصفح المنيو
+        </a>
+        <a href="#about" class="btn btn-outline">
+          اكتشف قصتي ←
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal-left">
+          <div class="about-image-wrapper">
+            <img src="images/chef-abood-kitchen.jpg" alt="Chef Abood Kitchen" loading="lazy">
+          </div>
+          <div class="about-image-frame"></div>
+          <div class="about-image-badge">
+            <div class="number">10+</div>
+            <div class="label">سنوات خبرة</div>
+          </div>
+        </div>
+
+        <div class="about-content reveal-right">
+          <div class="about-tag">تعرف عليّ</div>
+          <h2 class="about-title">شغف الطبخ <br>يبدأ من <span class="gold">القلب</span></h2>
+          <p class="about-text">
+            أنا الشيف عبود، طباخ محترف شغوف بتحويل المكونات البسيطة إلى تحف فنية على الطبق. 
+            رحلتي في عالم الطبخ بدأت منذ الصغر حيث كنت أراقب أمي وهي تحضّر أشهى الأطباق. 
+            اليوم، أجمع بين النكهات العربية الأصيلة والتقنيات العالمية الحديثة لأقدم تجربة طعام لا تُنسى.
+          </p>
+
+          <div class="about-stats">
+            <div class="stat-item reveal delay-1">
+              <div class="stat-number" data-count="150">0</div>
+              <div class="stat-label">طبق مميز</div>
+            </div>
+            <div class="stat-item reveal delay-2">
+              <div class="stat-number" data-count="5000">0</div>
+              <div class="stat-label">عميل سعيد</div>
+            </div>
+            <div class="stat-item reveal delay-3">
+              <div class="stat-number" data-count="25">0</div>
+              <div class="stat-label">جائزة</div>
+            </div>
+          </div>
+
+          <div class="about-signature">
+            <div class="signature-img">Chef Abod</div>
+            <div class="signature-info">
+              <div class="name">الشيف عبود</div>
+              <div class="role">Executive Chef & Founder</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE SECTION ===== -->
+  <section class="experience" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal">لماذا تختارني</div>
+        <h2 class="section-title reveal delay-1">تجربة طعام <span class="gold">استثنائية</span></h2>
+        <p class="section-desc reveal delay-2">أقدم لك تجربة طعام فريدة تجمع بين الذوق الرفيع والإبداع في كل طبق</p>
+      </div>
+
+      <div class="experience-grid">
+        <div class="exp-card reveal delay-1">
+          <div class="exp-icon">🔥</div>
+          <h3 class="exp-title">مكونات طازجة</h3>
+          <p class="exp-desc">نختار أجود المكونات الطازجة يومياً لضمان أعلى جودة في كل طبق نقدمه</p>
+        </div>
+
+        <div class="exp-card reveal delay-2">
+          <div class="exp-icon">🎨</div>
+          <h3 class="exp-title">تقديم فني</h3>
+          <p class="exp-desc">كل طبق هو لوحة فنية تُرضي العين قبل الذوق بتصميم وتقديم احترافي</p>
+        </div>
+
+        <div class="exp-card reveal delay-3">
+          <div class="exp-icon">🌍</div>
+          <h3 class="exp-title">نكهات عالمية</h3>
+          <p class="exp-desc">نمزج بين المطابخ العالمية والعربية لنخلق نكهات فريدة لا تُقاوَم</p>
+        </div>
+
+        <div class="exp-card reveal delay-4">
+          <div class="exp-icon">💝</div>
+          <h3 class="exp-title">بحب وشغف</h3>
+          <p class="exp-desc">كل طبق نُعده بحب وشغف كبير ليصل إليك بأفضل صورة ممكنة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MENU SECTION ===== -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal">قائمة الطعام</div>
+        <h2 class="section-title reveal delay-1">منيو <span class="gold">الشيف عبود</span></h2>
+        <p class="section-desc reveal delay-2">اكتشف مجموعة مختارة من أطباقي المميزة المحضرة بعناية فائقة</p>
+      </div>
+
+      <div class="menu-categories reveal delay-2">
+        <button class="menu-cat-btn active" data-category="all">All</button>
+        <button class="menu-cat-btn" data-category="chef">Chef Specials</button>
+        <button class="menu-cat-btn" data-category="meals">Meals</button>
+        <button class="menu-cat-btn" data-category="wraps">Rolls & Wraps</button>
+        <button class="menu-cat-btn" data-category="burgers">Burgers</button>
+        <button class="menu-cat-btn" data-category="pasta">Pasta & Rizzo</button>
+        <button class="menu-cat-btn" data-category="wings">Wings & Tenders</button>
+        <button class="menu-cat-btn" data-category="fingers">Fingers</button>
+        <button class="menu-cat-btn" data-category="extras">Extras</button>
+      </div>
+
+      <!-- Featured Chef Specials with Images -->
+      <div class="menu-featured reveal" id="menuFeatured">
+        <div class="menu-card" data-category="chef">
+          <div class="menu-card-image">
+            <img src="images/chicken.png" alt="Chef Abood Chicken Tagine" loading="lazy">
+            <div class="menu-card-tag">⭐ Chef Special</div>
+            <div class="menu-card-overlay"></div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Chef Abood Chicken Tagine</h3>
+              <span class="menu-card-price" data-meal-id="chef-chicken-tagine">16,000 <small>IQD</small></span>
+            </div>
+            <p class="menu-card-desc">Special chicken tagine prepared with Chef Abood's signature recipe, secret spices, and aromatic herbs</p>
+            <div class="menu-card-meta">
+              <span class="meta-item"><span class="icon">⭐</span> Most Popular</span>
+              <span class="meta-item"><span class="icon">👨‍🍳</span> Special Recipe</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card" data-category="chef">
+          <div class="menu-card-image">
+            <img src="images/steak.png" alt="Chef Abood Beef Tagine" loading="lazy">
+            <div class="menu-card-tag">🔥 Best Seller</div>
+            <div class="menu-card-overlay"></div>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-header">
+              <h3 class="menu-card-title">Chef Abood Beef Tagine</h3>
+              <span class="menu-card-price" data-meal-id="chef-beef-tagine">18,000 <small>IQD</small></span>
+            </div>
+            <p class="menu-card-desc">Premium beef tagine slow-cooked with Chef Abood's special marinade, fresh vegetables, and signature sauce</p>
+            <div class="menu-card-meta">
+              <span class="meta-item"><span class="icon">🔥</span> Featured</span>
+              <span class="meta-item"><span class="icon">👨‍🍳</span> Special Recipe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Menu List -->
+      <div class="menu-list-container" id="menuList">
+
+        <!-- الوجبات -->
+        <div class="menu-list-section reveal" data-category="meals">
+          <h3 class="menu-list-title"><span class="cat-icon">🍗</span> Meals — <small style="font-size:0.65em;color:var(--text-muted);font-weight:400;">Complete meals served with fries and a drink</small></h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Crispy Meal</div>
+                <div class="menu-item-desc">Crispy golden chicken served with fries and a drink</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="crispy-meal">15,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Scallop Meal</div>
+                <div class="menu-item-desc">Tender chicken scallop served with fries and a drink</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="scallop-meal">15,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Zinger & Cheese Meal</div>
+                <div class="menu-item-desc">Chicken zinger with melted cheese, served with fries and a drink</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="zinger-cheese-meal">15,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- رولات ورابات -->
+        <div class="menu-list-section reveal delay-1" data-category="wraps">
+          <h3 class="menu-list-title"><span class="cat-icon">🌯</span> Rolls & Wraps — <small style="font-size:0.65em;color:var(--text-muted);font-weight:400;">Perfectly wrapped with irresistible taste</small></h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Crispy Roll</div>
+                <div class="menu-item-desc">Crispy chicken roll with fresh lettuce and special sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="crispy-roll">8,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Classic Crispy Roll</div>
+                <div class="menu-item-desc">Crispy chicken roll made with our classic recipe</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="classic-crispy-roll">6,500 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chicken Fajita Wrap</div>
+                <div class="menu-item-desc">Grilled chicken fajita wrap with mixed veggies and spices</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="chicken-fajita-wrap">7,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">04</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Meat Fajita Wrap</div>
+                <div class="menu-item-desc">Savory beef fajita wrap with mixed veggies and signature spices</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="meat-fajita-wrap">8,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- برغر -->
+        <div class="menu-list-section reveal delay-2" data-category="burgers">
+          <h3 class="menu-list-title"><span class="cat-icon">🍔</span> Burgers — <small style="font-size:0.65em;color:var(--text-muted);font-weight:400;">Fresh flame-grilled burgers prepared daily</small></h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Classic Beef Burger</div>
+                <div class="menu-item-desc">Classic grilled beef patty with fresh lettuce and tomatoes</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="classic-beef-burger">8,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">VIP Beef Burger</div>
+                <div class="menu-item-desc">Premium beef burger served VIP style with double cheese and special house sauces</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-badge">VIP</div>
+              <div class="menu-item-price" data-meal-id="vip-beef-burger">12,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Crispy Chicken Burger</div>
+                <div class="menu-item-desc">Crispy golden chicken breast with special burger sauce and lettuce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="crispy-chicken-burger">7,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- باستا وريزو -->
+        <div class="menu-list-section reveal delay-1" data-category="pasta">
+          <h3 class="menu-list-title"><span class="cat-icon">🍝</span> Pasta & Rizzo — <small style="font-size:0.65em;color:var(--text-muted);font-weight:400;">Italian creations with Chef Abood's unique touch</small></h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Penne Pasta</div>
+                <div class="menu-item-desc">Penne pasta tossed in rich white cream sauce with grilled chicken</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="penne-pasta">8,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Vegetable Cream Rigatoni</div>
+                <div class="menu-item-desc">Rigatoni pasta with fresh garden vegetables in a white cream sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="veg-cream-rigatoni">8,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Spaghetti Bolognese</div>
+                <div class="menu-item-desc">Traditional spaghetti served with rich Italian meat sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="spaghetti-bolognese">8,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">04</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Classic Rizzo</div>
+                <div class="menu-item-desc">Classic creamy Rizzo rice dish with savory toppings</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="classic-rizzo">7,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">05</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Rizzo with Cheese</div>
+                <div class="menu-item-desc">Creamy Rizzo rice topped with lots of melted cheese</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="rizzo-cheese">8,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- أجنحة وتندر -->
+        <div class="menu-list-section reveal delay-2" data-category="wings">
+          <h3 class="menu-list-title"><span class="cat-icon">🍗</span> Wings & Tenders — <small style="font-size:0.65em;color:var(--text-muted);font-weight:400;">Crispy, tender, and perfectly seasoned</small></h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Honey Mustard Wings</div>
+                <div class="menu-item-desc">7 pieces of crispy wings tossed in sweet honey mustard sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="honey-mustard-wings">6,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">BBQ Wings</div>
+                <div class="menu-item-desc">7 pieces of crispy wings tossed in smoky BBQ sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="bbq-wings">7,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Honey Mustard Chicken Tenders</div>
+                <div class="menu-item-desc">Dynamic chicken breast tenders served with honey mustard dipping sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="honey-mustard-tenders">8,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">04</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">BBQ Chicken Tenders</div>
+                <div class="menu-item-desc">Crispy chicken breast tenders served with smoky BBQ dipping sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="bbq-tenders">8,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- فنكرز -->
+        <div class="menu-list-section reveal delay-1" data-category="fingers">
+          <h3 class="menu-list-title"><span class="cat-icon">🍟</span> Fingers — <small style="font-size:0.65em;color:var(--text-muted);font-weight:400;">Crispy and delicious chicken fingers</small></h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Fingers & Mozzarella Cheese</div>
+                <div class="menu-item-desc">Crispy chicken fingers covered with melted mozzarella cheese</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="fingers-mozzarella">5,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Fingers Meal</div>
+                <div class="menu-item-desc">Crispy chicken fingers served with fries and a refreshing drink</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="fingers-meal">4,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Spicy Fingers Meal</div>
+                <div class="menu-item-desc">Spicy chicken fingers served with fries and a drink</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="spicy-fingers-meal">5,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- إضافات -->
+        <div class="menu-list-section reveal delay-2" data-category="extras">
+          <h3 class="menu-list-title"><span class="cat-icon">🫙</span> Extras & Sauces</h3>
+          <div class="menu-list-items">
+            <div class="menu-list-item">
+              <span class="menu-item-number">01</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Chef Abood Special Herb Sauce</div>
+                <div class="menu-item-desc">Exclusive signature dipping sauce made by Chef Abood</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-badge">Exclusive</div>
+              <div class="menu-item-price" data-meal-id="special-herb-sauce">1,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">02</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Special BBQ Sauce</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="special-bbq-sauce">1,000 <small>IQD</small></div>
+            </div>
+            <div class="menu-list-item">
+              <span class="menu-item-number">03</span>
+              <div class="menu-item-info">
+                <div class="menu-item-name">Coleslaw</div>
+              </div>
+              <div class="menu-item-dots"></div>
+              <div class="menu-item-price" data-meal-id="coleslaw">1,000 <small>IQD</small></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIGNATURE DISHES SECTION ===== -->
+  <section class="signature" id="signature">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal">الأطباق المميزة</div>
+        <h2 class="section-title reveal delay-1">إبداعات <span class="gold">الشيف عبود</span></h2>
+        <p class="section-desc reveal delay-2">أطباق صُممت بشغف وإبداع لتكون تجربة طعام لا تُنسى</p>
+      </div>
+
+      <!-- Signature Dish 1 -->
+      <div class="signature-showcase reveal">
+        <div class="signature-image">
+          <img src="images/chicken.png" alt="Chef Abood Chicken Tagine" loading="lazy">
+          <div class="sig-number">01</div>
+        </div>
+        <div class="signature-info">
+          <div class="sig-tag">★ First Dish</div>
+          <h3>Chef Abood Chicken Tagine</h3>
+          <p>
+            The legendary chicken tagine with Chef Abood's special recipe — tender slow-cooked chicken
+            infused with a secret spice blend and aromatic herbs. Served hot with Chef Abood's special herb sauce.
+          </p>
+          <div class="signature-details">
+            <div class="sig-detail"><span class="icon">💰</span> <span data-meal-id="chef-chicken-tagine">16,000 IQD</span></div>
+            <div class="sig-detail"><span class="icon">⭐</span> Most Popular</div>
+            <div class="sig-detail"><span class="icon">👨‍🍳</span> Exclusive Recipe</div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+
+      <div class="section-divider">
+        <div class="line"></div>
+        <div class="diamond"></div>
+        <div class="line"></div>
+      </div>
+
+      <!-- Signature Dish 2 -->
+      <div class="signature-showcase reverse reveal">
+        <div class="signature-image">
+          <img src="images/steak.png" alt="Chef Abood Beef Tagine" loading="lazy">
+          <div class="sig-number">02</div>
+        </div>
+        <div class="signature-info">
+          <div class="sig-tag">★ Second Dish</div>
+          <h3>Chef Abood Beef Tagine</h3>
+          <p>
+            Premium beef tagine — carefully selected cuts of meat slow-cooked
+            with Chef Abood's special marinade and fresh vegetables. A melt-in-your-mouth dish
+            with a rich, balanced flavor that satisfies all tastes.
+          </p>
+          <div class="signature-details">
+            <div class="sig-detail"><span class="icon">💰</span> <span data-meal-id="chef-beef-tagine">18,000 IQD</span></div>
+            <div class="sig-detail"><span class="icon">🔥</span> Best Seller</div>
+            <div class="sig-detail"><span class="icon">👨‍🍳</span> Exclusive Recipe</div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+
+      <div class="section-divider">
+        <div class="line"></div>
+        <div class="diamond"></div>
+        <div class="line"></div>
+      </div>
+
+      <!-- Signature Dish 3 -->
+      <div class="signature-showcase reveal">
+        <div class="signature-image">
+          <img src="images/burger.png" alt="VIP Beef Burger" loading="lazy">
+          <div class="sig-number">03</div>
+        </div>
+        <div class="signature-info">
+          <div class="sig-tag">★ Third Dish</div>
+          <h3>VIP Beef Burger</h3>
+          <p>
+            Premium beef burger served VIP style — fresh beef patty grilled to perfection
+            with melted cheese and signature sauces on soft buns. An exceptional burger experience
+            exclusive to Chef Abood.
+          </p>
+          <div class="signature-details">
+            <div class="sig-detail"><span class="icon">💰</span> <span data-meal-id="vip-beef-burger">12,000 IQD</span></div>
+            <div class="sig-detail"><span class="icon">⭐</span> VIP</div>
+            <div class="sig-detail"><span class="icon">🍔</span> Premium Burger</div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal">آراء العملاء</div>
+        <h2 class="section-title reveal delay-1">ماذا يقول <span class="gold">عملاؤنا</span></h2>
+        <p class="section-desc reveal delay-2">تجارب حقيقية من عملاء استمتعوا بأطباق الشيف عبود</p>
+      </div>
+
+      <div class="testimonials-slider">
+        <div class="testimonial-card reveal delay-1">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">تجربة لا تُوصف! الستيك كان مطبوخاً بإتقان تام والنكهات كانت مذهلة. الشيف عبود فنان حقيقي في عالم الطبخ.</p>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">م</div>
+            <div>
+              <div class="testimonial-name">محمد الأحمد</div>
+              <div class="testimonial-role">عميل دائم</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal delay-2">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">أفضل تجربة طعام في حياتي! كل طبق كان تحفة فنية من حيث الشكل والطعم. أنصح الجميع بتجربة أطباق الشيف عبود.</p>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">س</div>
+            <div>
+              <div class="testimonial-name">سارة الخالد</div>
+              <div class="testimonial-role">مدوّنة طعام</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal delay-3">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">الباستا بالترافل كانت أسطورية! نكهة غنية ومتوازنة بشكل مثالي. الشيف عبود يفهم حقاً معنى الطبخ الفاخر.</p>
+          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ع</div>
+            <div>
+              <div class="testimonial-name">عبدالله الراشد</div>
+              <div class="testimonial-role">ناقد طعام</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal">معرض الصور</div>
+        <h2 class="section-title reveal delay-1">من <span class="gold">مطبخي</span></h2>
+        <p class="section-desc reveal delay-2">لقطات من أجمل الأطباق المحضرة بعناية وإبداع</p>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item reveal-scale delay-1" onclick="openLightbox(this)">
+          <img src="images/steak.png" alt="Steak" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-title">Ribeye Steak</span>
+          </div>
+        </div>
+        <div class="gallery-item reveal-scale delay-2" onclick="openLightbox(this)">
+          <img src="images/salmon.png" alt="Salmon" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-title">Grilled Salmon</span>
+          </div>
+        </div>
+        <div class="gallery-item reveal-scale delay-3" onclick="openLightbox(this)">
+          <img src="images/pasta.png" alt="Pasta" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-title">Truffle Pasta</span>
+          </div>
+        </div>
+        <div class="gallery-item reveal-scale delay-4" onclick="openLightbox(this)">
+          <img src="images/dessert.png" alt="Dessert" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-title">Lava Cake</span>
+          </div>
+        </div>
+        <div class="gallery-item reveal-scale delay-5" onclick="openLightbox(this)">
+          <img src="images/lamb.png" alt="Lamb" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-title">Lamb Chops</span>
+          </div>
+        </div>
+        <div class="gallery-item reveal-scale delay-6" onclick="openLightbox(this)">
+          <img src="images/burger.png" alt="Burger" loading="lazy">
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-title">Wagyu Burger</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag reveal">تواصل معي</div>
+        <h2 class="section-title reveal delay-1">دعنا نصنع <span class="gold">تجربتك</span></h2>
+        <p class="section-desc reveal delay-2">هل ترغب في حجز مناسبة خاصة أو طلب خدمة الشيف الخاص؟ تواصل معي الآن</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <h3>لنتحدث عن <span class="gold">طعامك</span></h3>
+          <p>سواء كنت تخطط لمناسبة خاصة، حفل عشاء، أو تريد تجربة طعام فاخرة في منزلك — أنا هنا لأحول رؤيتك إلى واقع لذيذ.</p>
+
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📞</div>
+              <div class="contact-detail-text">
+                <div class="label">الهاتف</div>
+                <div class="value"><a href="tel:07502203691" style="color: var(--text-primary);">07502203691</a></div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📸</div>
+              <div class="contact-detail-text">
+                <div class="label">انستقرام</div>
+                <div class="value"><a href="https://instagram.com/cheef.Aboud_" target="_blank" style="color: var(--gold-primary);">@cheef.Aboud_</a></div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-text">
+                <div class="label">الموقع</div>
+                <div class="value">دهوك، شارع متران مقابل واو بيوتي<br>داخل كفتريا كولدن بريك</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <a href="https://instagram.com/cheef.Aboud_" target="_blank" class="social-link" aria-label="Instagram">📸</a>
+            <a href="tel:07502203691" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal-right">
+          <h4>✉️ أرسل رسالتك</h4>
+          <form id="contactForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">الاسم الكامل</label>
+                <input type="text" id="name" name="name" placeholder="أدخل اسمك" required>
+              </div>
+              <div class="form-group">
+                <label for="email">البريد الإلكتروني</label>
+                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">رقم الهاتف</label>
+                <input type="tel" id="phone" name="phone" placeholder="+966 5X XXX XXXX">
+              </div>
+              <div class="form-group">
+                <label for="service">نوع الخدمة</label>
+                <select id="service" name="service">
+                  <option value="">اختر الخدمة</option>
+                  <option value="private">شيف خاص</option>
+                  <option value="event">مناسبة خاصة</option>
+                  <option value="catering">تموين</option>
+                  <option value="class">دروس طبخ</option>
+                  <option value="other">أخرى</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">رسالتك</label>
+              <textarea id="message" name="message" placeholder="اكتب تفاصيل طلبك هنا..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">🚀 إرسال الرسالة</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">👨‍🍳 CHEF ABOD</div>
+          <p>شيف محترف يقدم تجربة طعام فاخرة تجمع بين النكهات العربية الأصيلة والإبداع العالمي. كل طبق يروي قصة من الشغف والحب.</p>
+          <div class="contact-social">
+            <a href="https://instagram.com/cheef.Aboud_" target="_blank" class="social-link" aria-label="Instagram">📸</a>
+            <a href="tel:07502203691" class="social-link" aria-label="Phone">📞</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">→ الرئيسية</a></li>
+            <li><a href="#about">→ من أنا</a></li>
+            <li><a href="#menu">→ المنيو</a></li>
+            <li><a href="#gallery">→ المعرض</a></li>
+            <li><a href="#contact">→ تواصل</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>الخدمات</h4>
+          <ul class="footer-links">
+            <li><a href="#contact">→ شيف خاص</a></li>
+            <li><a href="#contact">→ مناسبات</a></li>
+            <li><a href="#contact">→ تموين</a></li>
+            <li><a href="#contact">→ دروس طبخ</a></li>
+            <li><a href="#contact">→ استشارات</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>ساعات العمل</h4>
+          <ul class="footer-links">
+            <li><a>السبت - الخميس</a></li>
+            <li><a>10:00 ص - 11:00 م</a></li>
+            <li><a style="margin-top: 10px;">الجمعة</a></li>
+            <li><a>2:00 م - 11:00 م</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Chef Abod. جميع الحقوق محفوظة.</p>
+        <div class="footer-bottom-links">
+          <a href="admin.html" target="_blank" style="opacity: 0.5"><span class="icon">🔑</span> لوحة التحكم</a>
+          <a href="#">سياسة الخصوصية</a>
+          <a href="#">الشروط والأحكام</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
